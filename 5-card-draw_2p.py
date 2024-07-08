@@ -139,6 +139,48 @@ class decisionTable:
     self.epsilon = pt.epsilon
     self.iterations = pt.iterations
 
+class oddsTable:
+  def __init__(self):
+    self.handsTable = {}  ## Table = dictionary of 'odds'
+    # Table = dictionary of 'hands' ({ hand1 : [list of integers], hand2 : [list of integers], ... })
+    #      list[0] = number of times hand appears before draw
+    #      list[1] = number of times hand appears before draw and leads to a win
+    #      list[2] = number of times hand appears before draw and leads to a loss
+    #      list[3] = number of times hand appears after draw
+    #      list[4] = number of times hand appears after draw and leads to a win
+    #      list[5] = number of times hand appears after draw and leads to a loss
+
+  class pickleTable:
+    #only exists to create a pickle-friendly data format for saving & loading
+    def __init__(self,table):
+      self.handsTable = table.handsTable
+  
+  def addWin(self,handBefore,handAfter):
+    self[handBefore][0] += 1
+    self[handBefore][1] += 1
+    self[handAfter][3] += 1
+    self[handAfter][4] += 1
+    
+  def addLoss(self,handBefore,handAfter):
+    self[handBefore][0] += 1
+    self[handBefore][2] += 1
+    self[handAfter][3] += 1
+    self[handAfter][5] += 1
+
+  def addTie(self,handBefore,handAfter):
+    self[handBefore][0] += 1
+    self[handAfter][3] += 1
+
+  def saveTable(self,filename):
+    pt = self.pickleTable(self)
+    with open(filename, 'wb') as handle:
+      pickle.dump(pt, handle)
+
+  def loadTable(self,filename):
+    with open(filename, 'rb') as handle:
+      pt = pickle.load(handle)
+      self.handsTable = pt.handsTable
+    
 #https://briancaffey.github.io/2018/01/02/checking-poker-hands-with-python.html
 def rankCount(hand):
   ranks_counts = {}
