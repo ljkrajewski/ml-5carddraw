@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from os.path import exists
 
 drawTablePath = "5card_table.pkl"
+oddsTablePath = "5card_odds.pkl"
 handSize = 5
 debug = False
 
@@ -350,55 +351,35 @@ def playOneGame():
 ### main routine ###
 print("Running...")
 
-# load (or make new) table
-print("Loading table...")
+# load (or make new) tables
+print("Loading draw table...")
 cardDrawTable = decisionTable()
 if exists(drawTablePath):
   cardDrawTable.loadTable(drawTablePath)
-  print("Table loaded with "+str(cardDrawTable.iterations)+" iterations.")
+  print("Draw table loaded with "+str(cardDrawTable.iterations)+" iterations.")
   print("Start epsilon = "+str(cardDrawTable.epsilon))
 else:
-  print("New table created.")
+  print("New draw table created.")
+
+print("Loading odds table...")
+oddsDrawTable = oddsTable()
+if exists(oddsTablePath):
+  oddsDrawTable.loadTable(oddsTablePath)
+  print("Odds table loaded.")
+else:
+  print("New odds table created.")
 
 # play the game
 print("Playing the game...")
-percentWins = 0.0
-percentLosses = 100.0
-while ((percentWins < 65.0) and (percentLosses > 15.0)):
-  numIterations = 500000
-  myDeck = deck()
-  wins = 0
-  losses = 0
-  draws = 0
-  debug = False
-  start = time()
-  print("Start time:\t"+str(datetime.fromtimestamp(start)))
-  for i in range(numIterations):
-    ans = playOneGame()
-    if ans[2] == 1:
-      wins += 1
-    elif ans[2] == -1:
-      losses += 1
-    else:
-      draws += 1
-    cardDrawTable.addMove(ans)
-  end = time()
-  
-  percentWins = (100.0*wins/numIterations)
-  percentLosses = (100.0*losses/numIterations)
-  percentDraws = (100.0*draws/numIterations)
-  print("End time:\t"+str(datetime.fromtimestamp(end)))
-  print("Time to run:\t"+str(timedelta(seconds=(end-start))))
-  print("\nEpsilon:\t"+str(cardDrawTable.epsilon))
-  print("Iterations:\t"+str(cardDrawTable.iterations))
-  print("\nRandoms:\t"+str(cardDrawTable.randoms))
-  print("Calculateds:\t"+str(cardDrawTable.calculateds))
-  print("Wins:\t"+str(wins),end="")
-  print(" (%5.2f%%)" % percentWins)
-  print("Losses:\t"+str(losses),end="")
-  print(" (%5.2f%%)" % percentLosses)
-  print("Draws:\t"+str(draws),end="")
-  print(" (%5.2f%%)" % percentDraws)
-  print("==============================================")
-
-print("\n\nExit condition met. Program ending.")
+for i in range(cardDrawTable.iterations):
+  # Deal cards for player 1
+  # Deal cards for player 2
+  # Toss/draw cards for player 1
+  # Toss/draw cards for player 2
+  # Declare winner and update odds table
+  if (i % 5000) == 0:
+    print(".",end="")
+  if (i % (5000*80)) == 0:
+    print("")
+oddsDrawTable.saveTable(oddsTablePath)
+print("\n\nProgram ending.")
