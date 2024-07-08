@@ -403,7 +403,13 @@ for i in range(cardDrawTable.iterations):
   # Toss/draw cards for player 2
   playerTwoAfter = drawNewCards(playerTwoBefore)
   # Declare winner and update odds table
-  
+  winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
+  if winner == 1:
+    print("Player 1 wins.")
+  elif winner == -1:
+    print("Player 2 wins.")
+  else
+    print("Tie.")
   # Print output (to make sure script is still running
   if (i % 5000) == 0:
     print(".",end="")
