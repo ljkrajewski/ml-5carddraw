@@ -358,6 +358,9 @@ def drawNewCards(oldHand):
   global debug
 
   move = myTable.findMove(oldHand.hand)
+  if debug:
+    print("Original hand: ",end="")
+    oldHand.printCards()
   newhand = hand()
   # Make second hand (drop cards from 1st hand, add cards to complete hand)
   for i in range(handSize):
@@ -365,6 +368,9 @@ def drawNewCards(oldHand):
       newHand.addCard(oldHand.hand[i])
   for i in range(handSize-len(handTwo.hand)):
     newHand.addCard(myDeck.dealCard())
+  if debug:
+    print("New hand: ",end="")
+    newHand.printCards()
   return newHand
 
 
@@ -403,12 +409,18 @@ else:
   loopEnd=cardDrawTable.iterations
 for i in range(cardDrawTable.iterations):
   # Deal cards for players 1 & 2
+  if debug:
+    print("Dealing orginal hands...")
   for i in range(handSize):
     playerOneBefore.addCard(myDeck.dealCard())
     playerTwoBefore.addCard(myDeck.dealCard())
   # Toss/draw cards for player 1
+  if debug:
+    print("Player 1 drawing cards...")
   playerOneAfter = drawNewCards(playerOneBefore)
   # Toss/draw cards for player 2
+  if debug:
+    print("Player 2 drawing cards...")
   playerTwoAfter = drawNewCards(playerTwoBefore)
   # Declare winner and update odds table
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
