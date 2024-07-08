@@ -348,6 +348,22 @@ def playOneGame():
   result = compareHands(handOne.hand,handTwo.hand)
   return [handOne.hand, move, result]
 
+def drawNewCards(oldHand):
+  global handSize
+  global myDeck
+  global debug
+
+  move = myTable.findMove(oldHand.hand)
+  newhand = hand()
+  # Make second hand (drop cards from 1st hand, add cards to complete hand)
+  for i in range(handSize):
+    if (move & (2 ** i)) == 0:
+      newHand.addCard(oldHand.hand[i])
+  for i in range(handSize-len(handTwo.hand)):
+    newHand.addCard(myDeck.dealCard())
+  return newHand
+
+
 ### main routine ###
 print("Running...")
 
@@ -371,12 +387,24 @@ else:
 
 # play the game
 print("Playing the game...")
+myDeck = deck()
+myDeck.shuffle()
+playerOneBefore = hand()
+playerTwoBefore = hand()
+playerOneAfter = hand()
+playerTwoAfter = hand()
 for i in range(cardDrawTable.iterations):
-  # Deal cards for player 1
-  # Deal cards for player 2
+  # Deal cards for players 1 & 2
+  for i in range(handSize):
+    playerOneBefore.addCard(myDeck.dealCard())
+    playerTwoBefore.addCard(myDeck.dealCard())
   # Toss/draw cards for player 1
+  playerOneAfter = drawNewCards(playerOneBefore)
   # Toss/draw cards for player 2
+  playerTwoAfter = drawNewCards(playerTwoBefore)
   # Declare winner and update odds table
+  
+  # Print output (to make sure script is still running
   if (i % 5000) == 0:
     print(".",end="")
   if (i % (5000*80)) == 0:
