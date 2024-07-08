@@ -322,7 +322,7 @@ else:
 print("Playing the game...")
 percentWins = 0.0
 percentLosses = 100.0
-while ((percentWins > 65.0) and (percentLosses < 15.0)):
+while ((percentWins < 65.0) and (percentLosses > 15.0)):
   numIterations = 500000
   myDeck = deck()
   wins = 0
