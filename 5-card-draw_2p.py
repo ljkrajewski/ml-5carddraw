@@ -313,6 +313,7 @@ def printMove(move):
 
 ####################################################
 
+"""
 def playOneGame():
   global handSize
   global debug
@@ -349,6 +350,7 @@ def playOneGame():
     print("")
   result = compareHands(handOne.hand,handTwo.hand)
   return [handOne.hand, move, result]
+"""
 
 def drawNewCards(oldHand):
   global handSize
