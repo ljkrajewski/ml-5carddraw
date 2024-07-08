@@ -144,12 +144,10 @@ class oddsTable:
   def __init__(self):
     self.handsTable = {}  ## Table = dictionary of 'odds'
     # Table = dictionary of 'hands' ({ hand1 : [list of integers], hand2 : [list of integers], ... })
-    #      list[0] = number of times hand appears before draw
-    #      list[1] = number of times hand appears before draw and leads to a win
-    #      list[2] = number of times hand appears before draw and leads to a loss
-    #      list[3] = number of times hand appears after draw
-    #      list[4] = number of times hand appears after draw and leads to a win
-    #      list[5] = number of times hand appears after draw and leads to a loss
+    #      list[0] = number of times hand appears after draw
+    #      list[1] = number of times hand appears after draw and leads to a win - number of times hand appears before draw and leads to a loss
+    #      list[2] = number of times hand appears before draw
+    #      list[3] = number of times hand appears before draw and leads to a win - number of times hand appears after draw and leads to a loss
 
   class pickleTable:
     #only exists to create a pickle-friendly data format for saving & loading
@@ -157,20 +155,24 @@ class oddsTable:
       self.handsTable = table.handsTable
   
   def addWin(self,handBefore,handAfter):
-    self[handBefore][0] += 1
-    self[handBefore][1] += 1
-    self[handAfter][3] += 1
-    self[handAfter][4] += 1
+    self[handBefore][2] += 1
+    self[handBefore][3] += 1
+    self[handAfter][0] += 1
+    self[handAfter][1] += 1
     
   def addLoss(self,handBefore,handAfter):
-    self[handBefore][0] += 1
     self[handBefore][2] += 1
-    self[handAfter][3] += 1
-    self[handAfter][5] += 1
+    self[handBefore][3] += -1
+    self[handAfter][0] += 1
+    self[handAfter][1] += -1
 
   def addTie(self,handBefore,handAfter):
     self[handBefore][0] += 1
-    self[handAfter][3] += 1
+    self[handAfter][2] += 1
+
+ def returnOdds(self,hand,BorA):
+   numBorA = (ord(BorA.lower())-97)*2
+   return 1.0 * self[hand][numBorA+1] / self[hand][numBorA]
 
   def saveTable(self,filename):
     pt = self.pickleTable(self)
