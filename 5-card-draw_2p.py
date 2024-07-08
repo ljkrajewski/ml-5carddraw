@@ -406,10 +406,16 @@ for i in range(cardDrawTable.iterations):
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
   if winner == 1:
     print("Player 1 wins.")
+    oddsDrawTable.addWin(playerOneBefore,playerOneAfter)
+    oddsDrawTable.addLoss(playerTwoBefore,playerTwoAfter)
   elif winner == -1:
     print("Player 2 wins.")
+    oddsDrawTable.addLoss(playerOneBefore,playerOneAfter)
+    oddsDrawTable.addWin(playerTwoBefore,playerTwoAfter)
   else
     print("Tie.")
+    oddsDrawTable.addTie(playerOneBefore,playerOneAfter)
+    oddsDrawTable.addTie(playerTwoBefore,playerTwoAfter)
   # Print output (to make sure script is still running
   if (i % 5000) == 0:
     print(".",end="")
