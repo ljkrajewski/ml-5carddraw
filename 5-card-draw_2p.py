@@ -7,7 +7,7 @@ from os.path import exists
 drawTablePath = "5card_table.pkl"
 oddsTablePath = "5card_odds.pkl"
 handSize = 5
-debug = False
+debug = True
 
 class deck:
   def __init__(self):
