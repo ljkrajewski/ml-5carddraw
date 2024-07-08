@@ -397,6 +397,10 @@ playerOneBefore = hand()
 playerTwoBefore = hand()
 playerOneAfter = hand()
 playerTwoAfter = hand()
+if debug:
+  loopEnd=1
+else:
+  loopEnd=cardDrawTable.iterations
 for i in range(cardDrawTable.iterations):
   # Deal cards for players 1 & 2
   for i in range(handSize):
@@ -409,21 +413,25 @@ for i in range(cardDrawTable.iterations):
   # Declare winner and update odds table
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
   if winner == 1:
-    print("Player 1 wins.")
+    if debug:
+      print("Player 1 wins.")
     oddsDrawTable.addWin(playerOneBefore,playerOneAfter)
     oddsDrawTable.addLoss(playerTwoBefore,playerTwoAfter)
   elif winner == -1:
-    print("Player 2 wins.")
+    if debug:
+      print("Player 2 wins.")
     oddsDrawTable.addLoss(playerOneBefore,playerOneAfter)
     oddsDrawTable.addWin(playerTwoBefore,playerTwoAfter)
-  else
-    print("Tie.")
+  else:
+    if debug:
+      print("Tie.")
     oddsDrawTable.addTie(playerOneBefore,playerOneAfter)
     oddsDrawTable.addTie(playerTwoBefore,playerTwoAfter)
   # Print output (to make sure script is still running
-  if (i % 5000) == 0:
-    print(".",end="")
-  if (i % (5000*80)) == 0:
-    print("")
+  if not debug:
+    if (i % 5000) == 0:
+      print(".",end="")
+    if (i % (5000*80)) == 0:
+      print("")
 oddsDrawTable.saveTable(oddsTablePath)
 print("\n\nProgram ending.")
