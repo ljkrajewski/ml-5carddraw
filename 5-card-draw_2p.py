@@ -160,30 +160,37 @@ class oddsTable:
       self.handsTable = table.handsTable
 
   def addKey(self,hand):
-    if not (hand in self.handsTable.keys()):
-      self.handsTable[hand] = [0, 0, 0, 0]
+    strHand = str(hand)
+    if not (strHand in self.handsTable.keys()):
+      self.handsTable[strHand] = [0, 0, 0, 0]
   
   def addWin(self,handBefore,handAfter):
-    self.addKey(handBefore)
-    self.handsTable[handBefore][2] += 1
-    self.handsTable[handBefore][3] += 1
-    self.addKey(handAfter)
-    self.handsTable[handAfter][0] += 1
-    self.handsTable[handAfter][1] += 1
+    strHandBefore = str(handBefore)
+    self.addKey(strHandBefore)
+    self.handsTable[strHandBefore][2] += 1
+    self.handsTable[strHandBefore][3] += 1
+    strHandAfter = str(handAfter)
+    self.addKey(strHandAfter)
+    self.handsTable[strHandAfter][0] += 1
+    self.handsTable[strHandAfter][1] += 1
     
   def addLoss(self,handBefore,handAfter):
-    self.addKey(handBefore)
-    self.handsTable[handBefore][2] += 1
-    self.handsTable[handBefore][3] += -1
-    self.addKey(handAfter)
-    self.handsTable[handAfter][0] += 1
-    self.handsTable[handAfter][1] += -1
+    strHandBefore = str(handBefore)
+    self.addKey(strHandBefore)
+    self.handsTable[strHandBefore][2] += 1
+    self.handsTable[strHandBefore][3] += -1
+    strHandAfter = str(handAfter)
+    self.addKey(strHandAfter)
+    self.handsTable[strHandAfter][0] += 1
+    self.handsTable[strHandAfter][1] += -1
 
   def addTie(self,handBefore,handAfter):
-    self.addKey(handBefore)
-    self.handsTable[handBefore][0] += 1
-    self.addKey(handAfter)
-    self.handsTable[handAfter][2] += 1
+    strHandBefore = str(handBefore)
+    self.addKey(strHandBefore)
+    self.handsTable[strHandBefore][0] += 1
+    strHandAfter = str(handAfter)
+    self.addKey(strHandAfter)
+    self.handsTable[strHandAfter][2] += 1
 
   def returnOdds(self,hand,BorA):
     numBorA = (ord(BorA.lower())-97)*2
