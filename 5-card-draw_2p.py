@@ -118,7 +118,7 @@ class decisionTable:
     return ans
 
   def findMove(self,thisHand):
-    if random.random() <= myTable.epsilon:
+    if random.random() <= self.epsilon:
       if debug:
         print("Making random move...")
       answer = self.makeRandomMove()
@@ -356,8 +356,9 @@ def drawNewCards(oldHand):
   global handSize
   global myDeck
   global debug
+  global cardDrawTable
 
-  move = myTable.findMove(oldHand.hand)
+  move = cardDrawTable.findMove(oldHand.hand)
   if debug:
     print("Original hand: ",end="")
     oldHand.printCards()
