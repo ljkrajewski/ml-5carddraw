@@ -320,9 +320,9 @@ else:
 
 # play the game
 print("Playing the game...")
-percentWins = 0.0
-percentLosses = 100.0
-while ((percentWins < 65.0) and (percentLosses > 15.0)):
+PercentWins = 0.0
+PercentLosses = 100.0
+while ((PercentWins < 65.0) or (PercentLosses > 15.0)):
   numIterations = 500000
   myDeck = deck()
   wins = 0
@@ -342,9 +342,10 @@ while ((percentWins < 65.0) and (percentLosses > 15.0)):
     myTable.addMove(ans)
   end = time()
   
-  percentWins = (100.0*wins/numIterations)
-  percentLosses = (100.0*losses/numIterations)
-  percentDraws = (100.0*draws/numIterations)
+  PercentWins = (100.0*wins/numIterations)
+  PercentLosses = (100.0*losses/numIterations)
+  PercentDraws = (100.0*draws/numIterations)
+  
   print("End time:\t"+str(datetime.fromtimestamp(end)))
   print("Time to run:\t"+str(timedelta(seconds=(end-start))))
   print("\nEpsilon:\t"+str(myTable.epsilon))
@@ -352,14 +353,14 @@ while ((percentWins < 65.0) and (percentLosses > 15.0)):
   print("\nRandoms:\t"+str(myTable.randoms))
   print("Calculateds:\t"+str(myTable.calculateds))
   print("Wins:\t"+str(wins),end="")
-  print(" (%5.2f%%)" % percentWins)
+  print(" (%5.2f%%)" % PercentWins)
   print("Losses:\t"+str(losses),end="")
-  print(" (%5.2f%%)" % percentLosses)
+  print(" (%5.2f%%)" % PercentLosses)
   print("Draws:\t"+str(draws),end="")
-  print(" (%5.2f%%)" % percentDraws)
+  print(" (%5.2f%%)" % PercentDraws)
   print("==============================================")
   
   # save updated move table w/ new info
   myTable.saveTable(tablePath)
-
-print("\n\nExit condition met. Program ending.")
+  
+print("\n\nExit condition achieved. Program run over.")
