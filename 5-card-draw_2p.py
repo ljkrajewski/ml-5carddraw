@@ -155,7 +155,7 @@ class oddsTable:
       self.handsTable = table.handsTable
 
   def addKey(self,hand):
-    if not (hand in self.keys()):
+    if not (hand in self.handsTable.keys()):
       self.handsTable[hand] = [0, 0, 0, 0]
   
   def addWin(self,handBefore,handAfter):
