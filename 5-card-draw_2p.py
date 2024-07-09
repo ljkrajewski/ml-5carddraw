@@ -189,7 +189,7 @@ class oddsTable:
     numBorA = (ord(BorA.lower())-97)*2
     strHand = str(hand)
     if debug:
-      print("type(hand) = "+type(hand))
+      print("type(hand) = "+str(type(hand)))
       print("numBorA = "+str(numBorA))
       print("self.handsTable["+strHand+"] = "+str(self.handsTable[strHand]))
       print("self.handsTable["+strHand+"]["+str(numBorA)+"] = "+str(self.handsTable[strHand][numBorA]))
