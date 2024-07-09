@@ -437,6 +437,13 @@ for i in range(cardDrawTable.iterations):
   if debug:
     print("Player 2 drawing cards...")
   playerTwoAfter = drawNewCards(playerTwoBefore)
+  if debug:
+    # Print hand 1
+    print("Hand 1 after draw: ",end="")
+    playerOneAfter.printCards()
+    # Print hand 2
+    print("Hand 2 after draw: ",end="")
+    playerTwoAfter.printCards()
   # Declare winner and update odds table
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
   if winner == -1:
