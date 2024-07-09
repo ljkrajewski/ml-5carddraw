@@ -7,7 +7,7 @@ from os.path import exists
 drawTablePath = "5card_table.pkl"
 oddsTablePath = "5card_odds.pkl"
 handSize = 5
-debug = True
+debug = False
 
 def pause():
   """Pauses the program and waits for user input."""
@@ -400,7 +400,7 @@ myDeck = deck()
 if debug:
   loopEnd=1
 else:
-  loopEnd=cardDrawTable.iterations
+  loopEnd=500000 #cardDrawTable.iterations
 for xx in range(loopEnd):
   myDeck.shuffle()
   playerOneBefore = hand()
@@ -451,7 +451,7 @@ for xx in range(loopEnd):
     oddsDrawTable.addTie(playerTwoBefore,playerTwoAfter)
   # Print output (to make sure script is still running
   if debug:
-    pause()
+    #pause()
   else:
     #print(str(i))
     if (xx % 10000) == 0:
