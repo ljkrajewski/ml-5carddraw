@@ -409,16 +409,16 @@ else:
 # play the game
 print("Playing the game...")
 myDeck = deck()
-myDeck.shuffle()
-playerOneBefore = hand()
-playerTwoBefore = hand()
-playerOneAfter = hand()
-playerTwoAfter = hand()
 if debug:
   loopEnd=1
 else:
   loopEnd=cardDrawTable.iterations
 for i in range(cardDrawTable.iterations):
+  myDeck.shuffle()
+  playerOneBefore = hand()
+  playerTwoBefore = hand()
+  playerOneAfter = hand()
+  playerTwoAfter = hand()
   # Deal cards for players 1 & 2
   if debug:
     print("Dealing orginal hands...")
