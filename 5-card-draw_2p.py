@@ -153,21 +153,31 @@ class oddsTable:
     #only exists to create a pickle-friendly data format for saving & loading
     def __init__(self,table):
       self.handsTable = table.handsTable
+
+  def addKey(self,hand):
+    if not (hand in self.keys()):
+      self.handsTable[hand] = [0, 0, 0, 0]
   
   def addWin(self,handBefore,handAfter):
+    self.addKey(handBefore)
     self.handsTable[handBefore][2] += 1
     self.handsTable[handBefore][3] += 1
+    self.addKey(handAfter)
     self.handsTable[handAfter][0] += 1
     self.handsTable[handAfter][1] += 1
     
   def addLoss(self,handBefore,handAfter):
+    self.addKey(handBefore)
     self.handsTable[handBefore][2] += 1
     self.handsTable[handBefore][3] += -1
+    self.addKey(handAfter)
     self.handsTable[handAfter][0] += 1
     self.handsTable[handAfter][1] += -1
 
   def addTie(self,handBefore,handAfter):
+    self.addKey(handBefore)
     self.handsTable[handBefore][0] += 1
+    self.addKey(handAfter)
     self.handsTable[handAfter][2] += 1
 
   def returnOdds(self,hand,BorA):
