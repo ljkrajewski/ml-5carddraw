@@ -7,7 +7,7 @@ from os.path import exists
 drawTablePath = "5card_table.pkl"
 oddsTablePath = "5card_odds.pkl"
 handSize = 5
-debug = False
+debug = True
 
 def pause():
   """Pauses the program and waits for user input."""
@@ -328,45 +328,6 @@ def printMove(move):
 
 ####################################################
 
-"""
-def playOneGame():
-  global handSize
-  global debug
-
-  myDeck = deck()
-  myDeck.shuffle()
-  handOne = hand()
-  handTwo = hand()
-
-  # Deal first hand
-  for i in range(handSize):
-    handOne.addCard(myDeck.dealCard())
-  # Determine cards to drop
-  move = myTable.findMove(handOne.hand)
-  # Make second hand (drop cards from 1st hand, add cards to complete hand)
-  for i in range(handSize):
-    if (move & (2 ** i)) == 0:
-      handTwo.addCard(handOne.hand[i])
-  for i in range(handSize-len(handTwo.hand)):
-    handTwo.addCard(myDeck.dealCard())
-
-  if debug:
-    print("\nHand 1:\t\t",end="")
-    handOne.printCards()
-    print("Hand 1 (raw):\t",end="")
-    handOne.printCardsRaw()
-    print("\nDropped cards:\t",end="")
-    printMove(move)
-    #print(str(move))
-    print("\nHand 2:\t\t",end="")
-    handTwo.printCards()
-    print("Hand 2 (raw):\t",end="")
-    handTwo.printCardsRaw()
-    print("")
-  result = compareHands(handOne.hand,handTwo.hand)
-  return [handOne.hand, move, result]
-"""
-
 def drawNewCards(oldHand):
   global handSize
   global myDeck
@@ -418,7 +379,7 @@ if debug:
   loopEnd=1
 else:
   loopEnd=cardDrawTable.iterations
-for xx in range(100000):  #range(cardDrawTable.iterations):
+for xx in loopEnd:
   myDeck.shuffle()
   playerOneBefore = hand()
   playerTwoBefore = hand()
@@ -467,9 +428,9 @@ for xx in range(100000):  #range(cardDrawTable.iterations):
     pause()
   else:
     #print(str(i))
-    if (xx % 5000) == 0:
+    if (xx % 10000) == 0:
       print(".",end="")
-    if (xx % (5000*80)) == 0:
+    if (xx % (10000*80)) == 0:
       print("")
 oddsDrawTable.saveTable(oddsTablePath)
 print("\n\nProgram ending.")
