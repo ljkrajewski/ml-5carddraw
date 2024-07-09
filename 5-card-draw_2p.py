@@ -367,7 +367,7 @@ def drawNewCards(oldHand):
   for i in range(handSize):
     if (move & (2 ** i)) == 0:
       newHand.addCard(oldHand.hand[i])
-  for i in range(handSize-len(handTwo.hand)):
+  for i in range(handSize-len(newHand.hand)):
     newHand.addCard(myDeck.dealCard())
   if debug:
     print("New hand: ",end="")
