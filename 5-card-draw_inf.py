@@ -67,7 +67,7 @@ class decisionTable:
     #      dictionary of 'moves' = { move1 [int] : moveValue1 [int], move2 [int] : moveValue2 [int], ...}
     self.epsilon = 1.0
     self.iterations = 0
-    self.epsilonMultiplier = 0.9999999999
+    self.epsilonMultiplier = 0.99999999
     self.calculateds = 0
     self.randoms = 0
 
