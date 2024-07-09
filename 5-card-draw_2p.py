@@ -198,10 +198,10 @@ class oddsTable:
     if debug:
       print("\ntype(hand) = "+str(type(hand)))
       print("numBorA = "+str(numBorA))
-      print("self.handsTable["+strHand+"] = "+str(self.handsTable[hand]))
-      print("self.handsTable["+strHand+"]["+str(numBorA)+"] = "+str(self.handsTable[hand][numBorA]))
-      print("self.handsTable["+strHand+"]["+str(numBorA+1)+"] = "+str(self.handsTable[hand][numBorA+1]))
-    answer = 1.0 * self.handsTable[hand][numBorA+1] / self.handsTable[hand][numBorA]
+      print("self.handsTable["+strHand+"] = "+str(self.handsTable[strHand]))
+      print("self.handsTable["+strHand+"]["+str(numBorA)+"] = "+str(self.handsTable[strHand][numBorA]))
+      print("self.handsTable["+strHand+"]["+str(numBorA+1)+"] = "+str(self.handsTable[strHand][numBorA+1]))
+    answer = 1.0 * self.handsTable[strHand][numBorA+1] / self.handsTable[strHand][numBorA]
     return answer
 
   def saveTable(self,filename):
