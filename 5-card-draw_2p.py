@@ -452,6 +452,7 @@ for xx in range(loopEnd):
   # Print output (to make sure script is still running
   if debug:
     #pause()
+    pass
   else:
     #print(str(i))
     if (xx % 10000) == 0:
