@@ -403,9 +403,13 @@ for xx in range(loopEnd):
     # Print hand 1
     print("Hand 1 after draw: ",end="")
     playerOneAfter.printCards()
+    print("Player 1's odds of winning: ",end="")
+    print(str(oddsDrawTable.returnOdds(playerOneAfter.hand,"a")))
     # Print hand 2
     print("Hand 2 after draw: ",end="")
     playerTwoAfter.printCards()
+    print("Player 2's odds of winning: ",end="")
+    print(str(oddsDrawTable.returnOdds(playerTwoAfter.hand,"a")))
   # Declare winner and update odds table
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
   if winner == -1:
