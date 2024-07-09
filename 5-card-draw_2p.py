@@ -418,7 +418,7 @@ if debug:
   loopEnd=1
 else:
   loopEnd=cardDrawTable.iterations
-for i in range(cardDrawTable.iterations):
+for xx in range(cardDrawTable.iterations):
   myDeck.shuffle()
   playerOneBefore = hand()
   playerTwoBefore = hand()
@@ -466,10 +466,10 @@ for i in range(cardDrawTable.iterations):
   if debug:
     pause()
   else:
-    print(str(i))
-    if (i % 1000) == 0:
+    #print(str(i))
+    if (xx % 1000) == 0:
       print(".",end="")
-    if (i % (1000*80)) == 0:
+    if (xx % (1000*80)) == 0:
       print("")
 oddsDrawTable.saveTable(oddsTablePath)
 print("\n\nProgram ending.")
