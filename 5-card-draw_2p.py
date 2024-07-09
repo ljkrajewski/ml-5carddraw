@@ -9,6 +9,10 @@ oddsTablePath = "5card_odds.pkl"
 handSize = 5
 debug = True
 
+def pause():
+  """Pauses the program and waits for user input."""
+  input("Press any key to continue...")
+
 class deck:
   def __init__(self):
     self.deck = list(range(52))
@@ -451,7 +455,9 @@ for i in range(cardDrawTable.iterations):
     oddsDrawTable.addTie(playerOneBefore,playerOneAfter)
     oddsDrawTable.addTie(playerTwoBefore,playerTwoAfter)
   # Print output (to make sure script is still running
-  if not debug:
+  if debug:
+    pause()
+  else:
     if (i % 5000) == 0:
       print(".",end="")
     if (i % (5000*80)) == 0:
