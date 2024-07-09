@@ -400,7 +400,7 @@ myDeck = deck()
 if debug:
   loopEnd=1
 else:
-  loopEnd=500000 #cardDrawTable.iterations
+  loopEnd=cardDrawTable.iterations
 for xx in range(loopEnd):
   myDeck.shuffle()
   playerOneBefore = hand()
