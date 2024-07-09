@@ -195,13 +195,20 @@ class oddsTable:
   def returnOdds(self,hand,BorA):
     numBorA = (ord(BorA.lower())-97)*2
     strHand = str(hand)
+    handExists = strHand in self.handsTable.keys()
     if debug:
       print("\ntype(hand) = "+str(type(hand)))
       print("numBorA = "+str(numBorA))
-      print("self.handsTable["+strHand+"] = "+str(self.handsTable[strHand]))
-      print("self.handsTable["+strHand+"]["+str(numBorA)+"] = "+str(self.handsTable[strHand][numBorA]))
-      print("self.handsTable["+strHand+"]["+str(numBorA+1)+"] = "+str(self.handsTable[strHand][numBorA+1]))
-    answer = 1.0 * self.handsTable[strHand][numBorA+1] / self.handsTable[strHand][numBorA]
+      if handExists:
+        print("self.handsTable["+strHand+"] = "+str(self.handsTable[strHand]))
+        print("self.handsTable["+strHand+"]["+str(numBorA)+"] = "+str(self.handsTable[strHand][numBorA]))
+        print("self.handsTable["+strHand+"]["+str(numBorA+1)+"] = "+str(self.handsTable[strHand][numBorA+1]))
+      else:
+        print(strHand+" not in odds table.")
+    if handExists:
+      answer = 1.0 * self.handsTable[strHand][numBorA+1] / self.handsTable[strHand][numBorA]
+    else:
+      answer = -10000000
     return answer
 
   def saveTable(self,filename):
