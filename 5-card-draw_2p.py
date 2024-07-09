@@ -187,7 +187,13 @@ class oddsTable:
 
   def returnOdds(self,hand,BorA):
     numBorA = (ord(BorA.lower())-97)*2
-    return 1.0 * self.handsTable[hand][numBorA+1] / self.handsTable[hand][numBorA]
+    if debug:
+      print("numBorA = "+str(numBorA))
+      print("self.handsTable["+hand+"] = "+string(self.handsTable[hand]))
+      print("self.handsTable["+hand+"]["+str(numBorA)+"] = "+str(self.handsTable[hand][numBorA]))
+      print("self.handsTable["+hand+"]["+str(numBorA+1)+"] = "+str(self.handsTable[hand][numBorA+1]))
+    answer = 1.0 * self.handsTable[hand][numBorA+1] / self.handsTable[hand][numBorA]
+    return answer
 
   def saveTable(self,filename):
     pt = self.pickleTable(self)
