@@ -379,7 +379,7 @@ if debug:
   loopEnd=1
 else:
   loopEnd=cardDrawTable.iterations
-for xx in loopEnd:
+for xx in range(loopEnd):
   myDeck.shuffle()
   playerOneBefore = hand()
   playerTwoBefore = hand()
