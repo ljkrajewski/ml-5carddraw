@@ -466,6 +466,7 @@ for i in range(cardDrawTable.iterations):
   if debug:
     pause()
   else:
+    print(str(i))
     if (i % 1000) == 0:
       print(".",end="")
     if (i % (1000*80)) == 0:
