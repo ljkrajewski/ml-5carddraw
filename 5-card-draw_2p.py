@@ -11,7 +11,7 @@ debug = True
 
 def pause():
   """Pauses the program and waits for user input."""
-  input("Press any key to continue...")
+  input("Press <Enter> to continue...")
 
 class deck:
   def __init__(self):
