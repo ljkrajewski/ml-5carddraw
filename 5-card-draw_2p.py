@@ -362,7 +362,7 @@ def drawNewCards(oldHand):
   if debug:
     print("Original hand: ",end="")
     oldHand.printCards()
-  newhand = hand()
+  newHand = hand()
   # Make second hand (drop cards from 1st hand, add cards to complete hand)
   for i in range(handSize):
     if (move & (2 ** i)) == 0:
