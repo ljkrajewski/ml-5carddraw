@@ -155,20 +155,20 @@ class oddsTable:
       self.handsTable = table.handsTable
   
   def addWin(self,handBefore,handAfter):
-    self[handBefore][2] += 1
-    self[handBefore][3] += 1
-    self[handAfter][0] += 1
-    self[handAfter][1] += 1
+    self.handsTable[handBefore][2] += 1
+    self.handsTable[handBefore][3] += 1
+    self.handsTable[handAfter][0] += 1
+    self.handsTable[handAfter][1] += 1
     
   def addLoss(self,handBefore,handAfter):
-    self[handBefore][2] += 1
-    self[handBefore][3] += -1
-    self[handAfter][0] += 1
-    self[handAfter][1] += -1
+    self.handsTable[handBefore][2] += 1
+    self.handsTable[handBefore][3] += -1
+    self.handsTable[handAfter][0] += 1
+    self.handsTable[handAfter][1] += -1
 
   def addTie(self,handBefore,handAfter):
-    self[handBefore][0] += 1
-    self[handAfter][2] += 1
+    self.handsTable[handBefore][0] += 1
+    self.handsTable[handAfter][2] += 1
 
   def returnOdds(self,hand,BorA):
     numBorA = (ord(BorA.lower())-97)*2
@@ -425,12 +425,12 @@ for i in range(cardDrawTable.iterations):
   playerTwoAfter = drawNewCards(playerTwoBefore)
   # Declare winner and update odds table
   winner = compareHands(playerOneAfter.hand,playerTwoAfter.hand)
-  if winner == 1:
+  if winner == -1:
     if debug:
       print("Player 1 wins.")
     oddsDrawTable.addWin(playerOneBefore,playerOneAfter)
     oddsDrawTable.addLoss(playerTwoBefore,playerTwoAfter)
-  elif winner == -1:
+  elif winner == 1:
     if debug:
       print("Player 2 wins.")
     oddsDrawTable.addLoss(playerOneBefore,playerOneAfter)
