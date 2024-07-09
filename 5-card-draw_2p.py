@@ -466,9 +466,9 @@ for i in range(cardDrawTable.iterations):
   if debug:
     pause()
   else:
-    if (i % 5000) == 0:
+    if (i % 1000) == 0:
       print(".",end="")
-    if (i % (5000*80)) == 0:
+    if (i % (1000*80)) == 0:
       print("")
 oddsDrawTable.saveTable(oddsTablePath)
 print("\n\nProgram ending.")
