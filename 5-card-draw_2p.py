@@ -458,6 +458,7 @@ for xx in range(loopEnd):
     if (xx % 5000) == 0:
       print(".",end="")
     if (xx % (5000*80)) == 0:
+      oddsDrawTable.saveTable(oddsTablePath)
       print("")
 oddsDrawTable.saveTable(oddsTablePath)
 print("\n\nProgram ending.")
